@@ -14,13 +14,15 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from config.passwords import DJ_SECRET_KEY, DB_PASSWORD, DB_USERNAME
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xq9p_wfzk2ap)u^9%15_o621tn=^=$n0rwr56h)tshz=3lnc&^'
+SECRET_KEY = DJ_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -99,8 +101,8 @@ DATABASES = {
         'HOST': 'localhost',
         'NAME': 'event_booker',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
+        'USER': DB_USERNAME,
+        'PASSWORD': DB_PASSWORD,
     }
 }
 
