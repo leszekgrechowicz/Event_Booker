@@ -1,6 +1,10 @@
-# from event_booker import models
+import random
+
+from event_booker import models
 from faker import Faker
+from lorem_text import lorem
 import datetime
+from sys import stderr
 
 fake = Faker()
 
@@ -15,14 +19,32 @@ def dates():
             date3 = date2
             date3 += datetime.timedelta(days=1)
             dates_.append((date1, date2, date3))
-    print('success')
-    print(dates_)
-    return dates_
+    print('Success - Date created')
+    return dates_[0]
 
 
-# def create_events():
-#     models.Event.objects.create(name='Python Basics', date='20')
-#     pass
+EVENTS = ['Python Basics',
+          'Python Intermediate',
+          'Python Advanced',
+          'Java Script Basics',
+          'Java Script Intermediate',
+          'Java Script Advanced',
+          'SQL Advanced',
+          ]
 
-if __name__ == '__main__':
-    print(dates())
+
+def create_events():
+    for event in EVENTS:
+        start_date, end_date, date = dates()
+        stderr.write(f'Dates for {event} created !')
+        models.Event.objects.create(name=event,
+                                    date=date,
+                                    start_date=start_date,
+                                    end_date=end_date,
+                                    places=random.randint(10, 50),
+                                    description=lorem.words(random.randint(15, 40)),
+                                    age_restriction=random.choice([True, False])
+                                    )
+        stderr.write(f'Event {event} crated !')
+
+

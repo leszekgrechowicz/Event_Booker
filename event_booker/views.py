@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import View
 import uuid
 
+from event_booker import models
+
 test = uuid.uuid4()
 
 
@@ -21,4 +23,6 @@ test = uuid.uuid4()
 
 class ShowEventsView(View):
     def get(self, request):
-        return render(request, 'event_booker/index.html', {'title': 'Home', 'data': 'Leszek'})
+        return render(request, 'event_booker/index.html', {'title': 'Home',
+                                                           'events': models.Event.objects.get.all().order_by('date'),
+                                                           })
