@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.views import View
 import uuid
 
-from event_booker import models
+from event_booker.models import Event
+from event_booker.utils import list_divider
 
 test = uuid.uuid4()
 
@@ -22,7 +23,11 @@ test = uuid.uuid4()
 # 'f8b2e14fe3496de336017687089fb3c49bcab889ac80545fc087289c5b1a3850'
 
 class ShowEventsView(View):
+    """ Displaying list of all events  """
     def get(self, request):
-        return render(request, 'event_booker/index.html', {'title': 'Home',
-                                                           'events': models.Event.objects.get.all().order_by('date'),
-                                                           })
+        return render(request, 'event_booker/index.html', {
+            'title': 'Home',
+            # 'events': list_divider(Event.objects.all().order_by('date'), 3),
+            'events': list_divider(Event.objects.all(), 3),
+
+            })
