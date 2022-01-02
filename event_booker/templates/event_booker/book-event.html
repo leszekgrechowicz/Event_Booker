@@ -1,38 +1,45 @@
 {% extends '__base__.html' %}
 {% load static %}
 
- {% block script %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+{% endblock %}
 
- {% endblock %}
+{% block script %}
+
+{% endblock %}
 
 
 {% block container %}
     {% load random_color %}
 
-    <div class="container">
-
+    <div class="form-container">
         <div class="form">
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+
+                <button type="submit">Login</button>
+            </form>
 
         </div>
 
         <div class="event">
 
             <div class="row1-container">
+                <div class="box {% random_color_name %} zoom">
+                    <h2>"{{ event.name }}"</h2>
+                    <p><strong>Event Date: </strong>{{ event.date }}</p>
+                    <p class="desc-hidden"><strong>Description:</strong> {{ event.description }}</p>
+                    <p><strong>Available Spaces:</strong> {{ event.places }}</p>
+                    <p><strong>Confirmed reservations:</strong> 5</p>
+                    <p><strong>Awaiting Confirmation:</strong> 10</p>
+                    <p><strong>Free spaces:</strong> 14</p>
+                    <p><strong>Duration:</strong> 5 days</p>
 
-                    <div class="box {% random_color_name %} zoom">
-                        <h2>"{{ event.name }}"</h2>
-                        <p><strong>Event Date: </strong>{{ event.date }}</p>
-                        <p class="desc-hidden"><strong>Description:</strong> {{ event.description }}</p>
-                        <p><strong>Available Spaces:</strong> {{ event.places }}</p>
-                        <p><strong>Confirmed reservations:</strong> 5</p>
-                        <p><strong>Awaiting Confirmation:</strong> 10</p>
-                        <p><strong>Free spaces:</strong> 14</p>
-                        <p><strong>Duration:</strong> 5 days</p>
-
-
-{#                        <img class="zoom-img" src="{% static 'images/icon-lookup.svg' %}" alt="zoom picture">#}
-                    </div>
-
+                </div>
             </div>
         </div>
     </div>

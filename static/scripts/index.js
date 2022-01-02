@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let div_zoom = document.getElementsByClassName('zoom')
 
-    for (let i=0; i<div_zoom.length; i++) {
+    for (let i = 0; i < div_zoom.length; i++) {
 
         div_zoom[i].addEventListener('mouseenter', (e) => {
             e.preventDefault()

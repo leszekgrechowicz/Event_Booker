@@ -4,6 +4,7 @@ import uuid
 
 from django.views.generic import FormView
 
+from event_booker.forms import CustomerBookForm
 from event_booker.models import Event
 from event_booker.utils import list_divider
 
@@ -25,18 +26,21 @@ test = uuid.uuid4()
 # 'f8b2e14fe3496de336017687089fb3c49bcab889ac80545fc087289c5b1a3850'
 
 class ShowEventsView(View):
-    """ Displaying list of all events  """
+    """Show list of all events"""
 
     def get(self, request):
         return render(request, 'event_booker/index.html', {
             'title': 'Home',
             # 'events': list_divider(Event.objects.all().order_by('date'), 3),
-            'events': list_divider(Event.objects.all(), 3),
+            'events': list_divider(Event.objects.all().order_by('date'), 3),
 
         })
 
 
 class BookEventView(FormView):
-    def get(self, request, id):
-        return render(request, 'event_booker/book-event.html', {'event': Event.objects.get(id=id)})
+    """Book event view"""
 
+    def get(self, request, id):
+        form = CustomerBookForm()
+        return render(request, 'event_booker/book-event.html', {'event': Event.objects.get(id=id),
+                                                                'form': form})

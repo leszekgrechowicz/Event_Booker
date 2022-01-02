@@ -1,9 +1,6 @@
-{% load static %}
-
-
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +9,13 @@
 
   <title>{% block title %}{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+{#  <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">#}
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
     rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Road+Rage&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Road+Rage&display=swap" rel="stylesheet">
+    {% block styles %}
+
+    {% endblock %}
     {% block script %}
 
     {% endblock %}
@@ -25,7 +25,6 @@
 <header>
     <div class="logo">
         <p>Ev<span class="span-st"></span><span class="span-nd">Ent</span>er <span class="r">©</span></p>
-
     </div>
 </header>
 

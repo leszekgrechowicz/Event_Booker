@@ -13,16 +13,21 @@
     --weight3: 600;
 }
 
+/** {*/
+/*  box-sizing: border-box;*/
+/*}*/
+
 body {
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
     background-color: var(--veryLightGray);
-
+    max-width: 80%;
+    margin: 0 auto;
+    /*text-align: center;*/
 }
 
 header {
-    max-width: 80%;
-    margin: 0 auto;
+
     text-align: center;
 }
 
@@ -41,13 +46,11 @@ h1:first-of-type {
     font-size: 1.1rem;
 }
 
-
 .logo p {
     font-size: 5.5rem;
     font-family: 'Road Rage', cursive;
     margin: 10px 10px;
     color: black;
-
 }
 
 .span-st {
@@ -99,7 +102,7 @@ h1:first-of-type {
 }
 
 .zoom:hover {
-    transform: scale(1.04);
+    transform: scale(1.02);
     transform-origin: 0 0;
     transition: transform .5s;
 }
@@ -110,7 +113,6 @@ h1:first-of-type {
     padding-top: 4px;
     padding-right: 15px;
 }
-
 
 .cyan {
     border-top: 4px solid var(--cyan);
@@ -157,6 +159,14 @@ h2 {
     color: white;
 }
 
+.img-event {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
 
 @media (max-width: 400px) {
     h1 {
@@ -193,19 +203,20 @@ h2 {
         align-items: center;
     }
 
-    .box-down {
-        position: relative;
-        top: 150px;
-    }
+    /*.box-down {*/
+    /*    position: relative;*/
+    /*    top: 150px;*/
+    /*}*/
 
-    .box-up {
-        position: relative;
-        top: -150px;
-    }
+    /*.box-up {*/
+    /*    position: relative;*/
+    /*    top: -150px;*/
+    /*}*/
 
     .box {
-        width: 15%;
-        min-height: 350px;
+        width: 22%;
+        min-height: 800px;
+
 
     }
 
