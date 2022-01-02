@@ -1,11 +1,14 @@
-from django.shortcuts import render
+import datetime
+
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.views import View
 import uuid
 
 from django.views.generic import FormView
 
 from event_booker.forms import CustomerBookForm
-from event_booker.models import Event
+from event_booker.models import Event, Customer
 from event_booker.utils import list_divider
 
 test = uuid.uuid4()
@@ -43,4 +46,31 @@ class BookEventView(FormView):
     def get(self, request, id):
         form = CustomerBookForm()
         return render(request, 'event_booker/book-event.html', {'event': Event.objects.get(id=id),
+                                                                'form': form})
+
+    def post(self, request, id):
+        form = CustomerBookForm(request.POST)
+        event = Event.objects.get(id=id)
+        if form.is_valid():
+            year_now = datetime.date.today().year
+            birth_year = form.cleaned_data['birth_year']
+            email = form.cleaned_data['email']
+            if event.age_restriction is True and (year_now - birth_year) < 18:
+                messages.warning(request, f'Unfortunately this event is for adults only !')
+                return redirect('event_booker:main-show-events')
+            Customer.objects.create(name=form.cleaned_data['name'],
+                                    surname=form.cleaned_data['surname'],
+                                    email=email,
+                                    birth_year=birth_year,
+                                    invited=True,
+                                    event=event,
+                                    uuid=uuid.uuid4())
+
+            event.no_of_reservations += 1
+            event.save()
+            messages.success(request, f'An Email confirmation has been send to "{email}"')
+
+            return redirect('event_booker:main-show-events')
+
+        return render(request, 'event_booker/book-event.html', {'event': event,
                                                                 'form': form})

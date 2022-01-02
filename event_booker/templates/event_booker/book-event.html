@@ -12,36 +12,69 @@
 
 {% block container %}
     {% load random_color %}
+    {% load mathfilters %}
+{#    {% if form.errors %}#}
+{#        {% for field in form %}#}
+{#            {% for error in field.errors %}#}
+{#                <div class="alert alert-danger">#}
+{#                    <strong>{{ error|escape }}</strong>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endfor %}#}
+{##}
+{#        {% for error in form.non_field_errors %}#}
+{#            <div class="alert alert-danger">#}
+{#                <strong>{{ error|escape }}</strong>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
 
     <div class="form-container">
         <div class="form">
 
             <form method="POST" enctype="multipart/form-data">
+                <p>To book your space please complete form below:</p>
                 {% csrf_token %}
                 {{ form.as_p }}
 
+                <p><input type="hidden" name="age_restriction" value="{{ event.age_restriction }}"></p>
+                <button class="book-button" type="submit">Book</button>
 
-                <button type="submit">Login</button>
             </form>
 
         </div>
 
         <div class="event">
 
-            <div class="row1-container">
-                <div class="box {% random_color_name %} zoom">
-                    <h2>"{{ event.name }}"</h2>
-                    <p><strong>Event Date: </strong>{{ event.date }}</p>
-                    <p class="desc-hidden"><strong>Description:</strong> {{ event.description }}</p>
-                    <p><strong>Available Spaces:</strong> {{ event.places }}</p>
-                    <p><strong>Confirmed reservations:</strong> 5</p>
-                    <p><strong>Awaiting Confirmation:</strong> 10</p>
-                    <p><strong>Free spaces:</strong> 14</p>
-                    <p><strong>Duration:</strong> 5 days</p>
+            <div class="box {% random_color_name %}">
+                <input type="hidden" id="event_url" data-url="{% url 'event_booker:book-event' id=event.id %}"/>
 
-                </div>
+                <img class="img-event" src="{% static 'images/Python.png' %}" alt="Event Image">
+                <h2>"{{ event.name }}"</h2>
+                <p><strong>Event Date: </strong>{{ event.date }}</p>
+                <p class="desc-hidden"><strong>Description:</strong> {{ event.description }}</p>
+
+                {% with reserved=event.confirmed_reservations %}
+                    <p class="available-spaces"><strong>Available Spaces:</strong>
+                        <span>{{ event.places }}</span></p>
+                    <p><strong>Free spaces:</strong> {{ event.places|sub:reserved }}</p>
+                {% endwith %}
+
+                <p><strong>Confirmed reservations:</strong> {{ event.confirmed_reservations }}</p>
+
+                {% with all_reservaions=event.no_of_reservations %}
+                    <p><strong>Awaiting
+                        Confirmation:</strong> {{ event.no_of_reservations|sub:event.confirmed_reservations }}
+                    </p>
+
+                {% endwith %}
+                {% if event.age_restriction is True %}
+                    <p class="age-restriction">Please note this event is for adults 18+. </p>
+                {% else %}
+                    <p>No age restriction.</p>
+                {% endif %}
+
             </div>
         </div>
     </div>
-
 {% endblock %}

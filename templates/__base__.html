@@ -2,17 +2,17 @@
 <html lang="en">
 {% load static %}
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
 
-  <title>{% block title %}{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
-{#  <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">#}
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Road+Rage&display=swap" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+{#      <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">#}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Road+Rage&display=swap" rel="stylesheet">
     {% block styles %}
 
     {% endblock %}
@@ -28,13 +28,24 @@
     </div>
 </header>
 
+{% if messages %}
+    {% for message in messages %}
+
+        <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+            <p><strong>{{ message }}</strong></p>
+
+        </div>
+    {% endfor %}
+{% endif %}
+
+
 {% block container %}
 {% endblock %}
 
 
-  <footer>
+<footer>
     <p class="attribution">
-      ©
+        ©
         <script>
             document.write(new Date().getFullYear());
         </script>
@@ -42,7 +53,7 @@
         <a href="https://github.com/leszekgrechowicz">GitHub</a>
 
     </p>
-  </footer>
+</footer>
 </body>
 
 </html>

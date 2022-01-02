@@ -8,8 +8,9 @@
 
 {% block container %}
     {% load random_color %}
+    {% load mathfilters %}
 
-    <div class="header">
+    <div class="header-text">
 
         <h1>Our Team is making sure that all our Events are top level !</h1>
     </div>
@@ -27,12 +28,30 @@
                         <img class="img-event" src="{% static 'images/Python.png' %}" alt="Event Image">
                         <h2>"{{ event.name }}"</h2>
                         <p><strong>Event Date: </strong>{{ event.date }}</p>
+                    <p><strong>Book your space between: </strong>{{ event.start_date }} - {{ event.end_date }}</p>
                         <p class="desc-hidden"><strong>Description:</strong> {{ event.description }}</p>
-                        <p><strong>Available Spaces:</strong> {{ event.places }}</p>
-                        <p><strong>Confirmed reservations:</strong> 5</p>
-                        <p><strong>Awaiting Confirmation:</strong> 10</p>
-                        <p><strong>Free spaces:</strong> 14</p>
-                        <p><strong>Duration:</strong> 5 days</p>
+
+                        {% with reserved=event.confirmed_reservations %}
+                            <p class="available-spaces"><strong>Available Spaces:</strong>
+                                <span>{{ event.places }}</span></p>
+                            <p><strong>Free spaces:</strong> {{ event.places|sub:reserved}}</p>
+                        {% endwith %}
+
+                        <p><strong>Confirmed reservations:</strong> {{ event.confirmed_reservations }}</p>
+
+                        {% with all_reservaions=event.no_of_reservations %}
+                            <p><strong>Awaiting Confirmation:</strong> {{ event.no_of_reservations|sub:event.confirmed_reservations }}
+                            </p>
+
+                        {% endwith %}
+
+                        {% if event.age_restriction is True %}
+                            <p class="age-restriction">Please note this event is for adults 18+. </p>
+                        {% else %}
+                            <p>No age restriction.</p>
+                        {% endif %}
+
+
                         <img class="zoom-img" src="{% static 'images/icon-lookup.svg' %}" alt="zoom picture">
                     </div>
 
