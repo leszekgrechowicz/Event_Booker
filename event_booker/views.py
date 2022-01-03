@@ -2,7 +2,9 @@ import datetime
 
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect
+from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.views import View
 import uuid
 
@@ -35,14 +37,13 @@ class ShowEventsView(View):
     def get(self, request):
         return render(request, 'event_booker/index.html', {
             'title': 'Home',
-            # 'events': list_divider(Event.objects.all().order_by('date'), 3),
             'events': list_divider(Event.objects.all().order_by('date'), 3),
 
         })
 
 
 class BookEventView(FormView):
-    """Book event view"""
+    """Customer book event view"""
 
     def get(self, request, id):
         form = CustomerBookForm()
@@ -73,6 +74,7 @@ class BookEventView(FormView):
 
             event.no_of_reservations += 1
             event.save()
+            # link = reverse('event_booker:confirm-booking', kwargs={'uuid': uuid_})
             send_mail(f' {event.name} booking  confirmation.',
                       f'Dear {name} {surname},\n \n\tPlease kindly confirm your attendance to an Event '
                       f'"{event.name}" \n at {event.date} by following the link below \n'
@@ -88,3 +90,16 @@ class BookEventView(FormView):
 
         return render(request, 'event_booker/book-event.html', {'event': event,
                                                                 'form': form})
+
+
+class ConfirmBooking(View):
+
+    def get(self, request, uuid_):
+
+        try:
+            customer = Customer.objects.get(uuid=uuid_)
+        except ValueError:
+            raise Http404()
+        event =
+
+        return render(request, 'event_booker/booking-confirmation.html', {'customer': customer})
