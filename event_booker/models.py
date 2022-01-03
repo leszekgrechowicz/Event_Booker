@@ -11,7 +11,7 @@ class Event(models.Model):
     end_date = models.DateField()
     places = models.SmallIntegerField()
     is_active = models.BooleanField(default=True)
-    description = models.TextField()
+    description = models.TextField(max_length=200)
     age_restriction = models.BooleanField(default=False)
     confirmed_reservations = models.SmallIntegerField(default=0)
     no_of_reservations = models.SmallIntegerField(default=0)
@@ -30,7 +30,7 @@ class Customer(models.Model):
     is_checked = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
     invited = models.BooleanField(default=False)
-    uuid = models.UUIDField()
+    uuid = models.UUIDField(editable=False)
 
     event = models.ForeignKey(Event, on_delete=models.PROTECT)
 

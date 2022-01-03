@@ -1,6 +1,7 @@
 import datetime
 
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.views import View
 import uuid
@@ -52,23 +53,36 @@ class BookEventView(FormView):
         form = CustomerBookForm(request.POST)
         event = Event.objects.get(id=id)
         if form.is_valid():
+            name = form.cleaned_data['name']
+            surname = form.cleaned_data['surname']
             year_now = datetime.date.today().year
             birth_year = form.cleaned_data['birth_year']
             email = form.cleaned_data['email']
+            uuid_ = uuid.uuid4()
+
             if event.age_restriction is True and (year_now - birth_year) < 18:
                 messages.warning(request, f'Unfortunately this event is for adults only !')
                 return redirect('event_booker:main-show-events')
-            Customer.objects.create(name=form.cleaned_data['name'],
-                                    surname=form.cleaned_data['surname'],
+            Customer.objects.create(name=name,
+                                    surname=surname,
                                     email=email,
                                     birth_year=birth_year,
                                     invited=True,
                                     event=event,
-                                    uuid=uuid.uuid4())
+                                    uuid=uuid_)
 
             event.no_of_reservations += 1
             event.save()
-            messages.success(request, f'An Email confirmation has been send to "{email}"')
+            send_mail(f' {event.name} booking  confirmation.',
+                      f'Dear {name} {surname},\n \n\tPlease kindly confirm your attendance to an Event '
+                      f'"{event.name}" \n at {event.date} by following the link below \n'
+                      f'http://127.0.0.1:8000/booking-confirmation/{uuid_}/ .\n'
+                      f'Kind Regards, \n'
+                      f'Team - EvEnter',
+                      'no-reply@eventer.com',
+                      [email],
+                      fail_silently=False)
+            messages.success(request, f'An Email confirmation has been sent to "{email}"')
 
             return redirect('event_booker:main-show-events')
 
