@@ -20,4 +20,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
+    let messageToDelete = document.getElementsByClassName('alert')
+
+    if (messageToDelete) {
+        setTimeout(function () {
+
+
+            messageToDelete.forEach(function (element) {
+                element.remove();
+            })
+
+        }, 3000);
+    }
+
 });

@@ -13,9 +13,22 @@
     --weight3: 600;
 }
 
-/** {*/
-/*  box-sizing: border-box;*/
-/*}*/
+.alert {
+    text-align: center;
+    padding: 2px;
+    border-radius: 10px;
+    color: white;
+    width: 80%;
+    margin: 43px auto 0;
+}
+
+.alert-success {
+    background: green;
+}
+
+.alert-warning {
+    background: var(--red);
+}
 
 body {
     font-size: 15px;
@@ -23,7 +36,7 @@ body {
     background-color: var(--veryLightGray);
     max-width: 80%;
     margin: 0 auto;
-    /*text-align: center;*/
+
 }
 
 header {
@@ -209,16 +222,6 @@ h2 {
         align-items: center;
         font-size: 1.0rem;
     }
-
-    /*.box-down {*/
-    /*    position: relative;*/
-    /*    top: 150px;*/
-    /*}*/
-
-    /*.box-up {*/
-    /*    position: relative;*/
-    /*    top: -150px;*/
-    /*}*/
 
     .box {
         width: 22%;
