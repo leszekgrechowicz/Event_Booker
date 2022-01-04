@@ -22,15 +22,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let messageToDelete = document.getElementsByClassName('alert')
 
-    if (messageToDelete) {
+    if (messageToDelete.length > 0) {
         setTimeout(function () {
+            messageToDelete[0].remove()
 
-
-            messageToDelete.forEach(function (element) {
-                element.remove();
-            })
-
-        }, 3000);
+        }, 5000);
     }
 
 });
