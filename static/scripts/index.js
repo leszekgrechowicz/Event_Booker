@@ -26,7 +26,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
         setTimeout(function () {
             messageToDelete[0].remove()
 
-        }, 5000);
+        }, 6000);
+    }
+
+    let freeSpaces = document.getElementsByClassName('free-spaces')
+
+        for (let i =0; i < freeSpaces.length; i++) {
+            if (freeSpaces[i].getAttribute('data-spaces') < 20) {
+                freeSpaces[i].parentElement.classList.add('fully-booked')
+                freeSpaces[i].nextElementSibling.style.color = "red"
+
+            }
+
+            freeSpaces[i].parentElement.addEventListener('mousenter', (e) => {
+                coverDiv = document.createElement()
+            } )
     }
 
 });

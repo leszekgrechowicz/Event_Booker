@@ -11,7 +11,6 @@
     {% load mathfilters %}
 
     <div class="header-text">
-
         <h1>Our Team is making sure that all our Events are top level !</h1>
     </div>
 
@@ -28,19 +27,23 @@
                         <img class="img-event" src="{% static 'images/Python.png' %}" alt="Event Image">
                         <h2>"{{ event.name }}"</h2>
                         <p><strong>Event Date: </strong>{{ event.date }}</p>
-                    <p><strong>Book your space between: </strong>{{ event.start_date }} - {{ event.end_date }}</p>
+                        <p><strong>Book your space between: </strong>{{ event.start_date }} - {{ event.end_date }}</p>
                         <p class="desc-hidden"><strong>Description:</strong> {{ event.description }}</p>
 
                         {% with reserved=event.confirmed_reservations %}
                             <p class="available-spaces"><strong>Available Spaces:</strong>
                                 <span>{{ event.places }}</span></p>
-                            <p><strong>Free spaces:</strong> {{ event.places|sub:reserved}}</p>
+                            <input type="hidden" class="free-spaces"
+                                   data-spaces="{{ event.places|sub:reserved }}"/>
+
+                            <p><strong>Free spaces:</strong> {{ event.places|sub:reserved }}</p>
                         {% endwith %}
 
                         <p><strong>Confirmed reservations:</strong> {{ event.confirmed_reservations }}</p>
 
                         {% with all_reservaions=event.no_of_reservations %}
-                            <p><strong>Awaiting Confirmation:</strong> {{ event.no_of_reservations|sub:event.confirmed_reservations }}
+                            <p><strong>Awaiting
+                                Confirmation:</strong> {{ event.no_of_reservations|sub:event.confirmed_reservations }}
                             </p>
 
                         {% endwith %}

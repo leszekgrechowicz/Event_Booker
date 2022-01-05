@@ -1,4 +1,5 @@
 import datetime
+import uuid
 
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
@@ -7,8 +8,6 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views import View
-import uuid
-
 from django.views.generic import FormView
 
 from event_booker.forms import CustomerBookForm
@@ -96,7 +95,10 @@ class ConfirmBooking(View):
 
         customer.is_checked = True
         customer.approved = True
-        customer.event.confirmed_reservations += 1
-        customer.save()
+        event = Event.objects.get(id=customer.event.id)
 
-        return render(request, 'event_booker/booking-confirmation.html', {'customer': customer})
+        event.confirmed_reservations += 1
+        event.save()
+
+        return render(request, 'event_booker/booking-confirmation.html', {'customer': customer,
+                                                                          'event': event})

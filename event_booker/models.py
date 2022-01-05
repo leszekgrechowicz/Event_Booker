@@ -30,7 +30,7 @@ class Customer(models.Model):
     is_checked = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
     invited = models.BooleanField(default=False)
-    uuid = models.UUIDField(editable=False)
+    uuid = models.UUIDField()
 
     event = models.ForeignKey(Event, on_delete=models.PROTECT)
 
@@ -41,5 +41,4 @@ class Customer(models.Model):
 class EventImage(models.Model):
     """Event Image Model"""
     scr = models.ImageField()
-
     event = models.ForeignKey(Event, on_delete=models.PROTECT)

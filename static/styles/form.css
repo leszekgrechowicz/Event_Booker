@@ -33,17 +33,6 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    text-align: center;
-    width: 90%;
-}
-
-body {
-    max-width: 90%;
-}
-
 
 .form-container {
     display: flex;
@@ -60,7 +49,7 @@ body {
 }
 
 .box {
-    width: 80%;
+    width: 65%;
     min-height: 500px;
 
 }

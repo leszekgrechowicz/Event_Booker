@@ -13,6 +13,34 @@
     --weight3: 600;
 }
 
+body {
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--veryLightGray);
+    max-width: 85%;
+    margin: 0 auto;
+
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 85%;
+}
+
+header {
+
+    text-align: center;
+}
+
+
+h1:first-of-type {
+    font-weight: var(--weight3);
+    color: var(--varyDarkBlue);
+    font-size: 1.1rem;
+}
+
 .alert {
     text-align: center;
     padding: 2px;
@@ -30,19 +58,7 @@
     background: var(--red);
 }
 
-body {
-    font-size: 15px;
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--veryLightGray);
-    max-width: 80%;
-    margin: 0 auto;
 
-}
-
-header {
-
-    text-align: center;
-}
 
 .attribution {
     font-size: 13px;
@@ -51,12 +67,6 @@ header {
 
 .attribution a {
     color: hsl(228, 45%, 44%);
-}
-
-h1:first-of-type {
-    font-weight: var(--weight3);
-    color: var(--varyDarkBlue);
-    font-size: 1.1rem;
 }
 
 .logo p {
@@ -185,6 +195,9 @@ h2 {
     font-weight: bold;
 }
 
+.fully-booked {
+    opacity: 0.5;
+}
 
 
 @media (max-width: 400px) {
@@ -197,6 +210,10 @@ h2 {
 @media (max-width: 450px) {
     .box {
         height: 200px;
+    }
+
+    .container-events {
+        margin-bottom: 85px;
     }
 }
 
@@ -212,6 +229,10 @@ h2 {
         padding: 0;
         margin: 0;
     }
+
+       .container-events {
+        margin-bottom: 85px;
+    }
 }
 
 @media (min-width: 950px) {
@@ -224,12 +245,16 @@ h2 {
     }
 
     .box {
-        width: 22%;
+        width: 20%;
         min-height: 800px;
     }
 
     .header p {
         width: 30%;
+    }
+
+    .container-events div:last-child {
+        margin-bottom: 48px;
     }
 
 }

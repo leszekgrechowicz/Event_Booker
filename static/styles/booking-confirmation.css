@@ -1,0 +1,15 @@
+.div-confirmation {
+    margin: 60px auto 0;
+    text-align: center;
+}
+
+.confirmation-signature {
+    margin-top: 50px
+}
+
+.div-confirmation a {
+    text-decoration: none;
+    color: var(--varyDarkBlue);
+
+
+}

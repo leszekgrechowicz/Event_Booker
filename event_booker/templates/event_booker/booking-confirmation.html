@@ -1,1 +1,33 @@
-{{ customer }}
+{% extends '__base__.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/booking-confirmation.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+{% block container %}
+
+    <div class="div-confirmation">
+
+        <h2>Hello {{ customer }} !</h2>
+        <p>Thank you for confirming your attendance to an event <strong>"{{ event.name }}" </strong>.</p>
+        <p><strong>Event Date:</strong> {{ event.date }}</p>
+
+
+        <div class="confirmation-signature">
+            <p>Enjoy and see you soon !</p>
+
+        </div>
+
+        <h3><a href="{% url 'event_booker:main-show-events' %}">Wish to visit us again, please follow this link. </a></h3>
+
+    </div>
+
+
+{% endblock %}
