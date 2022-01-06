@@ -77,7 +77,7 @@ h1:first-of-type {
 }
 
 .span-st {
-    color: rgb(162, 162, 162);
+    color: black;
 }
 
 .span-nd {
@@ -230,9 +230,7 @@ h2 {
         margin: 0;
     }
 
-       .container-events {
-        margin-bottom: 85px;
-    }
+
 }
 
 @media (min-width: 950px) {
@@ -246,15 +244,16 @@ h2 {
 
     .box {
         width: 20%;
-        min-height: 800px;
+        min-height: 850px;
     }
 
     .header p {
         width: 30%;
     }
 
-    .container-events div:last-child {
-        margin-bottom: 48px;
+    .container-events {
+        margin-bottom: 80px;
     }
+
 
 }

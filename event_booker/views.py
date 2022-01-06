@@ -90,15 +90,21 @@ class ConfirmBooking(View):
 
         try:
             customer = Customer.objects.get(uuid=uuid_)
+            event = Event.objects.get(id=customer.event.id)
         except ValueError:
             raise Http404()
 
-        customer.is_checked = True
-        customer.approved = True
-        event = Event.objects.get(id=customer.event.id)
+        already_confirmed = False
 
-        event.confirmed_reservations += 1
-        event.save()
+        if customer.approved is True:
+            already_confirmed = True
+        else:
+            customer.is_checked = True
+            customer.approved = True
+            customer.save()
+            event.confirmed_reservations += 1
+            event.save()
 
         return render(request, 'event_booker/booking-confirmation.html', {'customer': customer,
-                                                                          'event': event})
+                                                                          'event': event,
+                                                                          'confirmed': already_confirmed})

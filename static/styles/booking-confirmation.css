@@ -11,5 +11,9 @@
     text-decoration: none;
     color: var(--varyDarkBlue);
 
+}
 
+.already-confirmed {
+    color: var(--red);
+    font-size: 1.3em;
 }

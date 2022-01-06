@@ -16,7 +16,12 @@
     <div class="div-confirmation">
 
         <h2>Hello {{ customer }} !</h2>
-        <p>Thank you for confirming your attendance to an event <strong>"{{ event.name }}" </strong>.</p>
+        {% if confirmed is True %}
+            <p class="already-confirmed">You have already confirmed your attendance to the event:
+                <strong>"{{ event.name }}" </strong>.</p>
+        {% else %}
+            <p>Thank you for confirming your attendance to an event <strong>"{{ event.name }}" </strong>.</p>
+        {% endif %}
         <p><strong>Event Date:</strong> {{ event.date }}</p>
 
 
@@ -25,7 +30,8 @@
 
         </div>
 
-        <h3><a href="{% url 'event_booker:main-show-events' %}">Wish to visit us again, please follow this link. </a></h3>
+        <h3><a href="{% url 'event_booker:main-show-events' %}">If you wish to visit us again, please click here. </a>
+        </h3>
 
     </div>
 
