@@ -90,8 +90,8 @@ h1:first-of-type {
     color: red;
     position: relative;
     font-size: 0.4em;
-    top: -30px;
-    left: -9px
+    top: -36px;
+    left: 4px
 }
 
 .header-text {
@@ -196,7 +196,7 @@ h2 {
 }
 
 .fully-booked {
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 

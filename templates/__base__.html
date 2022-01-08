@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Road+Rage&display=swap" rel="stylesheet">
+
     {% block styles %}
 
     {% endblock %}
@@ -22,7 +23,7 @@
 </head>
 
 <body>
-<header>
+<header id="header-tag">
     <div class="logo">
         <p><span id="4" class="span-st">Ev</span><span id="8" class="span-nd">Ent</span><span id="9">er</span><span id="1" class="r">©</span></p>
     </div>
@@ -46,12 +47,9 @@
 <footer>
     <p class="attribution">
         ©
-        <script>
-            document.write(new Date().getFullYear());
-        </script>
+        <span id="year"></span>
         Copyright: Leszek Grechowicz
         <a href="https://github.com/leszekgrechowicz">GitHub</a>
-
     </p>
 </footer>
 </body>

@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 import datetime
+import uuid
 
 
 class Event(models.Model):
@@ -30,7 +31,7 @@ class Customer(models.Model):
     is_checked = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
     invited = models.BooleanField(default=False)
-    uuid = models.UUIDField()
+    uuid = models.UUIDField(default=uuid.uuid4())
 
     event = models.ForeignKey(Event, on_delete=models.PROTECT)
 

@@ -1,5 +1,11 @@
 window.addEventListener('DOMContentLoaded', (event) => {
 
+    // Footer date current year
+
+    let dateYearNow = new Date().getFullYear()
+    let yearSpan = document.getElementById('year')
+    yearSpan.innerText = dateYearNow.toString()
+
     // Zoom div and create book event button on mouseenter
 
     let div_zoom_list = document.getElementsByClassName('zoom')
@@ -29,33 +35,43 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let pinProvided = ''
 
     noNine.addEventListener('click', (e) => {
-        addToPin('9', pinProvided)
-        console.log('9')
-
+        pinProvided += '9'
 
     })
 
     noEight.addEventListener('click', (e) => {
-        addToPin('8', pinProvided)
-        console.log('8')
-
+        pinProvided += '8'
 
     })
 
     noFour.addEventListener('click', (e) => {
-        addToPin('4', pinProvided)
-        console.log('4')
-
+        pinProvided += '4'
 
     })
 
     noOne.addEventListener('click', (e) => {
-        addToPin('1', pinProvided)
-        console.log('1')
+        pinProvided += '1'
 
+        if (pinProvided === masterPin) {
 
+            let header = document.getElementById('header-tag')
+            console.log(header)
+
+            header.style.position = 'relative'
+            let linkDiv = document.createElement('div')
+            let link = document.createElement('a')
+            link.setAttribute('href', '/829admin976/')
+            link.innerText = 'Admin Link'
+            link.style.position = 'absolute'
+            link.style.right = '10%'
+            link.style.top = '40px'
+            link.style.textDecoration = 'none'
+            link.classList += 'book-button'
+            linkDiv.appendChild(link)
+            header.appendChild(linkDiv)
+
+        }
     })
-
 });
 
 
@@ -110,15 +126,3 @@ function checkFreeSpaces(eventsList) {
 }
 
 
-function addToPin(num, pin) {
-    pin += num
-    console.log(pin)
-
-
-    if (pin === 4891) {
-        console.log("You are in")
-    } else {
-        console.log("Keep going")
-    }
-
-}
