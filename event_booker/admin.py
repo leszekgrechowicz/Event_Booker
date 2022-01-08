@@ -31,7 +31,7 @@ def sent_invitation_email(self, request, queryset):
 
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['name', 'surname']
+    list_display = ['name', 'surname', 'email', 'event']
     actions = [sent_invitation_email, ]
 
 
