@@ -4,11 +4,9 @@ from . import models
 
 
 class CustomerBookForm(forms.ModelForm):
+    """Customer booking form =>
+    fields: ['name', 'surname', 'email', 'birth_year']"""
     class Meta:
-
-        ATTRS = {
-
-        }
 
         model = models.Customer
         fields = ['name', 'surname', 'email', 'birth_year']

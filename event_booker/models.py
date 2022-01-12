@@ -42,4 +42,7 @@ class Customer(models.Model):
 class EventImage(models.Model):
     """Event Image Model"""
     scr = models.ImageField()
-    event = models.ForeignKey(Event, on_delete=models.PROTECT)
+    event = models.ForeignKey(Event, on_delete=models.PROTECT, related_name='image')
+
+    def __str__(self):
+        return f'{self.scr}'
