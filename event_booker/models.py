@@ -26,7 +26,7 @@ class Customer(models.Model):
     name = models.CharField(max_length=120)
     surname = models.CharField(max_length=180)
     email = models.EmailField()
-    birth_year = models.IntegerField(validators=[MinValueValidator(1800),
+    birth_year = models.IntegerField(validators=[MinValueValidator(datetime.datetime.now().year - 150),
                                                  MaxValueValidator(datetime.datetime.now().year)])
     is_checked = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
