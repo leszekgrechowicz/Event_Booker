@@ -111,7 +111,7 @@ function checkFreeSpaces(eventsList) {
 
     for (let i = 0; i < eventsList.length; i++) {
 
-        if (eventsList[i].getAttribute('data-spaces') < 20) {
+        if (eventsList[i].getAttribute('data-spaces') < 1) {
             eventsList[i].parentElement.classList.add('fully-booked')
             eventsList[i].nextElementSibling.style.color = "red"
             eventsList[i].parentElement.addEventListener('mouseenter', (e) => {
@@ -119,6 +119,7 @@ function checkFreeSpaces(eventsList) {
                 button.innerText = "Fully Booked !"
                 button.style.background = 'red'
                 button.style.color = 'white'
+                button.style.cursor = 'default'
                 button.setAttribute('href', 'javascript:void(0)')
             })
         }

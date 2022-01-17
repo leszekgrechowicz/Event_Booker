@@ -34,7 +34,7 @@ class EvenBookFormTest(TestCase):
         form = CustomerBookForm(data=self.customer_data)
         self.assertTrue(form.is_valid())
 
-    def test_not_valid_form(self):
+    def test_not_valid_form_150years_and_older(self):
         self.customer_data['birth_year'] = datetime.datetime.now().year - 151
         form = CustomerBookForm(data=self.customer_data)
         self.assertFalse(form.is_valid())

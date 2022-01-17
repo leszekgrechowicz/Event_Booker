@@ -41,8 +41,8 @@ class Customer(models.Model):
 
 class EventImage(models.Model):
     """Event Image Model"""
-    scr = models.ImageField()
-    event = models.ForeignKey(Event, on_delete=models.PROTECT, related_name='image')
+    scr = models.ImageField(upload_to='images/event_logo/', verbose_name='Logo/Image')
+    event = models.OneToOneField(Event, on_delete=models.CASCADE, related_name='image')
 
     def __str__(self):
         return f'{self.scr}'

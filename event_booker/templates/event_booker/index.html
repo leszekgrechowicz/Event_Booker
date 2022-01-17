@@ -24,7 +24,7 @@
 
                         <input type="hidden" id="event_url" data-url="{% url 'event_booker:book-event' id=event.id %}"/>
 
-                        <img class="img-event" src="{% static 'images/Python.png' %}" alt="Event Image">
+                        <img class="img-event" src="{{ event.image.scr.url }}" alt="Event Image">
                         <h2>"{{ event.name }}"</h2>
                         <p><strong>Event Date: </strong>{{ event.date }}</p>
                         <p><strong>Book your space between: </strong>{{ event.start_date }} - {{ event.end_date }}</p>

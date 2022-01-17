@@ -35,6 +35,16 @@ class CustomerAdmin(admin.ModelAdmin):
     actions = [sent_invitation_email, ]
 
 
-admin.site.register(Event)
+class EventImageInLine(admin.TabularInline):
+    model = EventImage
+
+
+@admin.register(Event)
+class EventCustomer(admin.ModelAdmin):
+    inlines = [
+        EventImageInLine,
+    ]
+
+
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(EventImage)
