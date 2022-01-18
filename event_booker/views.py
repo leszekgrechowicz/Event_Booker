@@ -63,7 +63,7 @@ class BookEventView(FormView):
             domain = get_current_site(request).domain
             link = reverse('event_booker:confirm-booking', kwargs={'uuid_': uuid_})
             link = 'http://' + domain + link
-            email_subject = f' {event.name} booking  confirmation.'
+            email_subject = f'{event.name} booking confirmation.'
             email_send_from = 'no-reply@eventer.com'
             email_body = f'Dear {name} {surname},\n \n\tPlease kindly confirm your attendance to an Event ' \
                          f'"{event.name}" \non {event.date} by following the link below: \n' \

@@ -103,7 +103,7 @@ function clearMessage(message) {
         setTimeout(function () {
             message[0].remove()
 
-        }, 6000);
+        }, 8000);
     }
 }
 
