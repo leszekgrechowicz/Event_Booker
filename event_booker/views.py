@@ -90,9 +90,11 @@ class ConfirmBooking(View):
 
         try:
             customer = Customer.objects.get(uuid=uuid_)
-            event = Event.objects.get(id=customer.event.id)
-        except ValueError:
+
+        except (ValueError, Customer.DoesNotExist):
             raise Http404()
+
+        event = Event.objects.get(id=customer.event.id)
 
         already_confirmed = False
 

@@ -103,11 +103,11 @@ class TestProcessingBookingConfirmation(MainTestSettings):
         self.assertContains(response, 'Leszek Grechowicz')
 
     def test_link_not_valid_after_first_use(self):
-        first_link_use = self.client.get(self.booking_confirmation_link)
-        self.assertEquals(first_link_use.context['confirmed'], False)
-        second_link_use = self.client.get(self.booking_confirmation_link)
-        self.assertEquals(second_link_use.context['confirmed'], True)
-        self.assertContains(second_link_use, '404')
+        first_link_use_response = self.client.get(self.booking_confirmation_link)
+        self.assertEquals(first_link_use_response.context['confirmed'], False)
+        second_link_use_response = self.client.get(self.booking_confirmation_link)
+        self.assertEquals(second_link_use_response.context['confirmed'], True)
+        self.assertContains(second_link_use_response, '404')
 
     def test_link_with_invalid_uuid(self):
         not_valid_booking_confirmation_link = reverse('event_booker:confirm-booking',
