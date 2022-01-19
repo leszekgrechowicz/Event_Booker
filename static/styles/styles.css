@@ -200,6 +200,19 @@ h2 {
     opacity: 0.7;
 }
 
+.errorlist li {
+    list-style: none;
+    border: 3px solid red;
+    padding: 4px 5px;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+
+}
+
+.errorlist {
+    padding-left: 0;
+}
 
 
 @media (max-width: 400px) {

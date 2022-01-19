@@ -46,7 +46,7 @@ class BookEventView(FormView):
             uuid_ = uuid.uuid4()
 
             if event.age_restriction is True and (year_now - birth_year) < 18:
-                messages.warning(request, f'{name.capitalize()} !Unfortunately this event is for adults only ! '
+                messages.warning(request, f'{name.capitalize()} ! Unfortunately this event is for adults only ! '
                                           f'An ID would be checked at the entrance.')
                 return redirect('event_booker:main-show-events')
             Customer.objects.create(name=name,
